@@ -51,6 +51,7 @@ public class AddLoginServlet extends HttpServlet {
             String id=request.getParameter("id");
             String password=request.getParameter("password");
             stmt.executeUpdate("insert into LOGIN (ID,PASSWORD) values ('"+id+"','"+password+"')");
+            response.sendRedirect("NewServlet");
 //            while (rs.next()) {
 //                String id=rs.getString("ID");
 //                String password=rs.getString("PASSWORD");

@@ -50,6 +50,7 @@ public class NewServlet extends HttpServlet {
                 String password=rs.getString("PASSWORD");
                 out.println(id+":"+password+"<a href='delete_login?id="+id+"'>Delete</a><br/>");
             }
+            out.println("<a href='add.html'>ADD</a>");
         } catch (SQLException ex) {
             Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
