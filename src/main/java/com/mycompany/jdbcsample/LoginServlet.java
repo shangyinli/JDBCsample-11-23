@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
             String id=request.getParameter("id");
             String password=request.getParameter("password");
             ResultSet rs=stmt.executeQuery("select * from LOGIN where ID='"+id+"' and PASSWORD='"+password+"'");
-            out.println("select * from LOGIN where ID='"+id+"' and PASSWORD='"+password+"'");
+//            out.println("select * from LOGIN where ID='"+id+"' and PASSWORD='"+password+"'");
             if(rs.next()){
                 out.println("success!");
             }else{
