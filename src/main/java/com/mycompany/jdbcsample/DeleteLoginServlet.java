@@ -50,6 +50,7 @@ public class DeleteLoginServlet extends HttpServlet {
             Statement stmt=con.createStatement();
             String id=request.getParameter("id");
             String password=request.getParameter("password");
+            String message=request.getParameter("message");
             stmt.executeUpdate("delete from LOGIN where ID='"+id+"'");
             response.sendRedirect("NewServlet");
 //            while (rs.next()) {

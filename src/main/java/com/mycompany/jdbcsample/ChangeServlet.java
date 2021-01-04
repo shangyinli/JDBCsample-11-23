@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author eason
  */
-@WebServlet(name = "AddLoginServlet", urlPatterns = {"/add_login"})
-public class AddLoginServlet extends HttpServlet {
+@WebServlet(name = "ChangeServlet", urlPatterns = {"/change"})
+public class ChangeServlet extends HttpServlet {
     static {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -50,7 +50,7 @@ public class AddLoginServlet extends HttpServlet {
             Statement stmt=con.createStatement();
             String id=request.getParameter("id");
             String password=request.getParameter("password");
-            stmt.executeUpdate("insert into LOGIN (ID,PASSWORD) values ('"+id+"','"+password+"')");
+            stmt.executeUpdate("update LOGIN set PASSWORD='"+password+"' where ID='"+id+"'");
             response.sendRedirect("index.html");
 //            while (rs.next()) {
 //                String id=rs.getString("ID");

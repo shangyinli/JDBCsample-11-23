@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 /**
  *
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "NewServlet", urlPatterns = {"/NewServlet"})
 public class NewServlet extends HttpServlet {
+
     static {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -29,6 +31,7 @@ public class NewServlet extends HttpServlet {
             Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,16 +44,53 @@ public class NewServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter();Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");) {
+        try (PrintWriter out = response.getWriter(); Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");) {
             /* TODO output your page here. You may use following sample code. */
-            Statement stmt=con.createStatement();
-            ResultSet rs=stmt.executeQuery("select * from LOGIN");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from LOGIN");
+            String d = (String) request.getAttribute("s");
+            out.println("<html>");
+            out.println("<body>");
+            out.println("<div style=\"text-align:center;\n"
+                    + "             text-valign:center;\n"
+                    + "             margin:350px;\n"
+                    + "             box-sizing:border-box;\n"
+                    + "             background-width:60px;\n"
+                    + "             background-color:#f5f6f7;\n"
+                    + "             border-top-left-radius:8px;\n"
+                    + "             border-top-right-radius:8px;\n"
+                    + "             border-bottom-right-radius:8px;\n"
+                    + "             border-bottom-left-radius:8px;\n"
+                    + "             border-top-color: initial;\n"
+                    + "             border-top-style: none;\n"
+                    + "             border-top-width: initial;\n"
+                    + "             border-right-color: initial;\n"
+                    + "             border-right-style: none;\n"
+                    + "             border-right-width: 60px;\n"
+                    + "             border-bottom-color: initial;\n"
+                    + "             border-bottom-style: none;\n"
+                    + "             border-bottom-width: initial;\n"
+                    + "             border-left-color: initial;\n"
+                    + "             border-left-style: none;\n"
+                    + "             border-left-width: 60px;\n"
+                    + "             border-image-source: initial;\n"
+                    + "             border-image-slice: initial;\n"
+                    + "             border-image-width: initial;\n"
+                    + "             border-image-outset: initial;\n"
+                    + "             border-image-repeat: initial;\n"
+                    + "             padding-top: 40px;\n"
+                    + "             padding-bottom: 40px;\">");
             while (rs.next()) {
-                String id=rs.getString("ID");
-                String password=rs.getString("PASSWORD");
-                out.println(id+":"+password+"<a href='delete_login?id="+id+"'>Delete</a><br/>");
+                String id = rs.getString("ID");
+                String password = rs.getString("PASSWORD");
+                String message = rs.getString("MESSAGE");
+                out.println(id + " : " + message + " " + d);
+                out.println("<a href='delete_login?id=" + id + "'><button type=\"button\" class=\"btn btn-light\" style=\"margin-left:10px\">刪除</button></a><br/>");
             }
-            out.println("<a href='index.html'>Login</a>");
+            out.println("<a href=\"message.html\"><button type=\"button\" class=\"btn btn-light\" style=\"margin-bottom:10px\">留言</button></a>");
+            out.println("<a href='index.html'><button type=\"button\" class=\"btn btn-light\" style=\"margin-bottom:10px\">登出</button></a>");
+            out.println("</body>");
+            out.println("</html>");
         } catch (SQLException ex) {
             Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -54,8 +54,39 @@ public class LoginServlet extends HttpServlet {
 //            out.println("select * from LOGIN where ID='"+id+"' and PASSWORD='"+password+"'");
             if(rs.next()){
                 out.println("success!");
+                response.sendRedirect("NewServlet");
             }else{
-                out.println("failed!");
+                out.println("<div style=\"text-align:center;\n" +
+"             text-valign:center;\n" +
+"             margin:350px;\n" +
+"             box-sizing:border-box;\n" +
+"             background-width:60px;\n" +
+"             background-color:#f5f6f7;\n" +
+"             border-top-left-radius:8px;\n" +
+"             border-top-right-radius:8px;\n" +
+"             border-bottom-right-radius:8px;\n" +
+"             border-bottom-left-radius:8px;\n" +
+"             border-top-color: initial;\n" +
+"             border-top-style: none;\n" +
+"             border-top-width: initial;\n" +
+"             border-right-color: initial;\n" +
+"             border-right-style: none;\n" +
+"             border-right-width: 60px;\n" +
+"             border-bottom-color: initial;\n" +
+"             border-bottom-style: none;\n" +
+"             border-bottom-width: initial;\n" +
+"             border-left-color: initial;\n" +
+"             border-left-style: none;\n" +
+"             border-left-width: 60px;\n" +
+"             border-image-source: initial;\n" +
+"             border-image-slice: initial;\n" +
+"             border-image-width: initial;\n" +
+"             border-image-outset: initial;\n" +
+"             border-image-repeat: initial;\n" +
+"             padding-top: 40px;\n" +
+"             padding-bottom: 40px;\">"+
+              "<font size=\"5\">Login Failed!<br/></font> "+
+              "<a href=\"index.html\"><button type=\"button\" class=\"btn btn-light\" style=\"margin-top:10px\">重新登錄</button></a><br/></div>");
             }
 //            while (rs.next()) {
 //                String id=rs.getString("ID");

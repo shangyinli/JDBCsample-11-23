@@ -1,9 +1,11 @@
+<%-- 
+    Document   : change
+    Created on : 2021/1/2, 下午 09:25:29
+    Author     : eason
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -40,7 +42,7 @@ and open the template in the editor.
              border-image-repeat: initial;
              padding-top: 40px;
              padding-bottom: 40px;">
-            <form method="post" action="add_login">
+            <form method="post" action="change">
                 <input type="text" name="id" placeholder="ID or name" style="margin-bottom:10px"/><br/>
                 <input type="password" name="password" placeholder="Password" style="margin-bottom:10px"/><br/>
                 <input type="submit" style="margin-bottom:10px"/><br/>

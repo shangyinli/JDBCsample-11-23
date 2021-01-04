@@ -7,13 +7,6 @@ package com.mycompany.jdbcsample;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,15 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author eason
  */
-@WebServlet(name = "AddLoginServlet", urlPatterns = {"/add_login"})
-public class AddLoginServlet extends HttpServlet {
-    static {
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+@WebServlet(name = "NewServlet1", urlPatterns = {"/NewServlet1"})
+public class NewServlet1 extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,20 +32,17 @@ public class AddLoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter();Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            Statement stmt=con.createStatement();
-            String id=request.getParameter("id");
-            String password=request.getParameter("password");
-            stmt.executeUpdate("insert into LOGIN (ID,PASSWORD) values ('"+id+"','"+password+"')");
-            response.sendRedirect("index.html");
-//            while (rs.next()) {
-//                String id=rs.getString("ID");
-//                String password=rs.getString("PASSWORD");
-//                out.println(id+":"+password+"<br/>");
-//            }
-        } catch (SQLException ex) {
-            Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet NewServlet1</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet NewServlet1 at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

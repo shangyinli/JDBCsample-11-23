@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -24,8 +25,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author eason
  */
-@WebServlet(name = "AddLoginServlet", urlPatterns = {"/add_login"})
-public class AddLoginServlet extends HttpServlet {
+@WebServlet(name = "Social", urlPatterns = {"/social"})
+public class Social extends HttpServlet {
+
     static {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -33,6 +35,7 @@ public class AddLoginServlet extends HttpServlet {
             Logger.getLogger(NewServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,13 +48,18 @@ public class AddLoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter();Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");) {
+        try (PrintWriter out = response.getWriter(); Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");) {
             /* TODO output your page here. You may use following sample code. */
-            Statement stmt=con.createStatement();
-            String id=request.getParameter("id");
-            String password=request.getParameter("password");
-            stmt.executeUpdate("insert into LOGIN (ID,PASSWORD) values ('"+id+"','"+password+"')");
-            response.sendRedirect("index.html");
+            Statement stmt = con.createStatement();
+            String a = (String) request.getAttribute("c");
+            String id = request.getParameter("id");
+            String password = request.getParameter("password");
+            String message = request.getParameter("message");
+            String s = request.getParameter("l");
+            request.setAttribute("s", s);
+            request.getRequestDispatcher("NewServlet").forward(request, response);
+            stmt.executeUpdate("update LOGIN set MESSAGE='" + message + "' where ID='" + id + "'");
+            response.sendRedirect("NewServlet");
 //            while (rs.next()) {
 //                String id=rs.getString("ID");
 //                String password=rs.getString("PASSWORD");

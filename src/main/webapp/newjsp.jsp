@@ -3,7 +3,7 @@
     Created on : 2020/11/23, 下午 02:32:51
     Author     : eason
 --%>
-
+<%@ page import="java.util.Date" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,7 @@
     <body>
         <%
             Class.forName("org.apache.derby.jdbc.ClientDriver");//載入驅動程式方法
+            Date date = new Date();
         %>
     </body>
 </html>

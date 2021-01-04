@@ -1,14 +1,15 @@
+<%-- 
+    Document   : index
+    Created on : 2021/1/2, 下午 09:25:41
+    Author     : eason
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
         <div style="text-align:center;
@@ -40,11 +41,13 @@ and open the template in the editor.
              border-image-repeat: initial;
              padding-top: 40px;
              padding-bottom: 40px;">
-            <form method="post" action="add_login">
+            <form method="post" action="login">
                 <input type="text" name="id" placeholder="ID or name" style="margin-bottom:10px"/><br/>
                 <input type="password" name="password" placeholder="Password" style="margin-bottom:10px"/><br/>
                 <input type="submit" style="margin-bottom:10px"/><br/>
             </form>
+            <a href="add.html"><button type="button" class="btn btn-light" style="margin-bottom:10px">建立新帳號</button></a><br/>
+            <a href="change.html"><button type="button" class="btn btn-light" style="margin-bottom:10px">更改密碼</button></a>
         </div>
     </body>
 </html>
